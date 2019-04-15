@@ -2,6 +2,8 @@ package xyz.calvinwilliams.demo;
 
 import java.time.format.DateTimeFormatter;
 
+import xyz.calvinwilliams.okjson.OKJSON;
+
 public class Demo {
 
 	public static void printDemoUser( DemoUserClass demoUser ) {
@@ -19,7 +21,7 @@ public class Demo {
 		}
 		
 		System.out.println("------ demoUser.borrowDetailList ------");
-		for( BorrowDetail b : demoUser.borrowDetailList ) {
+		for( DemoUserBorrowDetail b : demoUser.borrowDetailList ) {
 			System.out.println("--- demoUser.borrowDetail ---");
 			System.out.println("demoUser.borrowDetailList.bookName["+b.bookName+"]");
 			System.out.println("demoUser.borrowDetailList.author["+b.author+"]");
@@ -34,10 +36,10 @@ public class Demo {
 		System.out.println( "OKJSON.stringToObject ..." );
 		demoUser = OKJSON.fileToObject( "demo.json", DemoUserClass.class, OKJSON.OPTIONS_DIRECT_ACCESS_PROPERTY_ENABLE ) ;
 		if( demoUser == null ) {
-			System.out.println( "OKJSON.stringToObject failed["+OKJSON.getErrorCode()+"]["+OKJSON.getErrorDesc()+"]" );
+			System.out.println( "OKJSON.fileToObject failed["+OKJSON.getErrorCode()+"]["+OKJSON.getErrorDesc()+"]" );
 			return;
 		} else {
-			System.out.println( "OKJSON.stringToObject ok" );
+			System.out.println( "OKJSON.fileToObject ok" );
 			printDemoUser( demoUser );
 		}
 	}
